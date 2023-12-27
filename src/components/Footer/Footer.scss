@@ -1,0 +1,30 @@
+.footer{
+    background-color: rgb(0, 0, 0);
+    padding: 1.5625rem 2.1875rem;
+
+    .top{
+        display: flex;
+        justify-content: end;
+        gap: 30px;
+        color: white;
+    }
+
+    .line{
+        height: 5px;
+        background-color: white;
+    }
+    .down{
+        text-align: center;
+        
+        .link{
+            font-weight: 600;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 2.8125rem;
+            color: rgb(141, 3, 3);
+
+            span{
+                color: white;
+            }
+        }
+    }
+}
