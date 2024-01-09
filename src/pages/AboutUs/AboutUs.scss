@@ -1,0 +1,96 @@
+.about-us {
+  .hero-section {
+    height: 50vh;
+    width: 100vw;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("https://www.krishnaautoelectric.com/blog/wp-content/uploads/2021/03/How-to-Choose-the-Right-Automobile-Spare-Parts-for-Your-Vehicle.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position-y: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-attachment: fixed;
+
+      h3{
+       color: white;
+       font-size: 2.5rem;
+       font-weight: 900;
+
+       span{
+        color: rgb(132, 0, 0);
+
+        span{
+            color: white;
+        }
+       }
+      }
+  }
+
+  .description{
+    background-color: #f2e4e4;
+    padding-block: 5vh;
+    padding-inline: 5vw;
+
+    h3{
+        font-weight: 500;
+        font-size: 2.5rem;
+    }
+
+    .row{
+        display: flex;
+        justify-content: center;
+
+        .desc-item{
+            display: flex;
+            align-items: center;
+            background: white;
+            margin: .625rem;
+            padding: .625rem;
+            border-radius: .625rem;
+
+            .icon-box{
+                padding-right: 10px;
+                .icon{
+                    color: rgb(124, 0, 0);
+                    font-size: 40px;
+                }
+            }
+
+            .top-text{
+                display: flex;
+                flex-direction: column;
+
+                .first-text{
+                    color: red;
+                    font-weight: 500;
+                }
+            }
+
+            .down-text{
+                display: flex;
+                flex-direction: column;
+                color: gray;
+            }
+        }
+    }
+  }
+
+  .container-info {
+    display: flex;
+    align-items: center;
+
+    .img-container {
+      padding: 0.9375rem;
+
+      img {
+        width: 100%;
+        border-radius: 0.625rem;
+      }
+    }
+
+    .text-container {
+      padding: 0.9375rem;
+    }
+  }
+}

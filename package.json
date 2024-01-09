@@ -14,10 +14,24 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.1",
     "@mui/material": "^5.15.1",
+    "@paystack/inline-js": "^2.13.0",
+    "@reduxjs/toolkit": "^2.0.1",
     "@sanity/client": "^6.10.0",
+    "@stripe/react-stripe-js": "^2.4.0",
+    "@stripe/stripe-js": "^2.2.2",
+    "axios": "^1.6.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-paystack": "^5.0.0",
+    "react-redux": "^9.0.4",
     "react-router-dom": "^6.21.0",
+    "react-scroll-trigger": "^0.6.14",
+    "react-simple-star-rating": "^5.1.7",
+    "react-spinners": "^0.13.8",
+    "react-toastify": "^9.1.3",
+    "reactstrap": "^9.2.1",
+    "redux": "^5.0.1",
+    "redux-persist": "^6.0.0",
     "sass": "^1.69.5"
   },
   "devDependencies": {
@@ -28,6 +42,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "react-error-overlay": "^6.0.9",
     "vite": "^5.0.8"
   }
 }

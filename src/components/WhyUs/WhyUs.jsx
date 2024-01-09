@@ -1,97 +1,50 @@
 
-import './WhyUs.scss'
+import useFetch from "../../hooks/useFetch";
+import "./WhyUs.scss";
 
 const WhyUs = () => {
+  const { data, loading, error } = useFetch("/why-uses?populate=*");
+
+
   return (
-    <div className='WhyUs bg-light mt-3'>
-        <div className="container text-dark pt-3">
-    <header className="pt-4 pb-3">
-      <h4 className='text-end'>Why choose us</h4>
-    </header>
+    <div className="WhyUs mt-3">
+      <div className="container text-dark pt-3">
+        <header className="pt-4 pb-3">
+          <h4 className="text-end px-md-5">Why choose us</h4>
+        </header>
 
-    <div className="row mb-4">
-      <div className="col-lg-4 col-md-6">
-        <figure className="d-flex align-items-center mb-4">
-          <span className="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-            <i className="fas fa-camera-retro fa-2x fa-fw text-danger floating"></i>
-          </span>
-          <figcaption className="info">
-            <h6 className="title">Reasonable prices</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-          </figcaption>
-        </figure>
-        
-      </div>
-      
-      <div className="col-lg-4 col-md-6">
-        <figure className="d-flex align-items-center mb-4">
-          <span className="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-            <i className="fas fa-star fa-2x fa-fw text-danger floating"></i>
-          </span>
-          <figcaption className="info">
-            <h6 className="title">Best quality</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-          </figcaption>
-        </figure>
-        
-      </div>
-      
-      <div className="col-lg-4 col-md-6">
-        <figure className="d-flex align-items-center mb-4">
-          <span className="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-            <i className="fas fa-plane fa-2x fa-fw text-danger floating"></i>
-          </span>
-          <figcaption className="info">
-            <h6 className="title">Worldwide shipping</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-          </figcaption>
-        </figure>
-        
-      </div>
-      
-      <div className="col-lg-4 col-md-6">
-        <figure className="d-flex align-items-center mb-4">
-          <span className="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-            <i className="fas fa-users fa-2x fa-fw text-danger floating"></i>
-          </span>
-          <figcaption className="info">
-            <h6 className="title">Customer satisfaction</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-          </figcaption>
-        </figure>
-        
-      </div>
-      
-      <div className="col-lg-4 col-md-6">
-        <figure className="d-flex align-items-center mb-4">
-          <span className="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-            <i className="fas fa-thumbs-up fa-2x fa-fw text-danger floating"></i>
-          </span>
-          <figcaption className="info">
-            <h6 className="title">Happy customers</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-          </figcaption>
-        </figure>
-        
-      </div>
-      
-      <div className="col-lg-4 col-md-6">
-        <figure className="d-flex align-items-center mb-4">
-          <span className="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-            <i className="fas fa-box fa-2x fa-fw text-danger floating"></i>
-          </span>
-          <figcaption className="info">
-            <h6 className="title">Thousand items</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-          </figcaption>
-        </figure>
-        
-      </div>
-      
-    </div>
-  </div>
-    </div>
-  )
-}
+        <div className="mb-4">
+          {loading}
+          {error && <p>Error: Something went wrong</p>}
+          {data && (
+            <div className="row">
+              {data.map((item) => (
+                <div className="why-card col-md-4 col-lg-3" key={item.id}>
+                  <div className="img-container">
+                    <img
+                      src={
+                        process.env.REACT_APP_UPLOAD_URL +
+                        item?.attributes?.img?.data?.attributes?.url
+                      }
+                      alt={item.attributes.Title}
+                    />
+                    <div className="go-corner" href="#">
+                      <div className="go-arrow"></div>
+                    </div>
 
-export default WhyUs
+                  </div>
+                  <div className="text">
+                    <h6 className="title">{item.attributes.Title}</h6>
+                    <p className="subtitle">{item.attributes.Subtitle}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default WhyUs;

@@ -1,0 +1,100 @@
+.WhyUs {
+
+  background-color: rgb(230, 230, 230);
+  padding-bottom: .9375rem;
+  .row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-evenly;
+
+    .go-corner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      overflow: hidden;
+      top: 0;
+      right: 0;
+      background-color: #8f0000;
+      border-radius: 0 4px 0 32px;
+    }
+
+    .go-arrow {
+      margin-top: -4px;
+      margin-right: -4px;
+      color: white;
+      font-family: courier, sans;
+    }
+
+    .why-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      max-width: 300px;
+      border-radius: 4px;
+      padding: 32px 24px;
+      margin: 12px;
+      text-decoration: none;
+      z-index: 0;
+      overflow: hidden;
+      cursor: pointer;
+      transition: .5s all;
+
+      &:hover{
+        transform: translateY(-0.625rem) scale(1.05);
+      }
+
+      &:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: -16px;
+        right: -16px;
+        background: #c10000;
+        height: 32px;
+        width: 32px;
+        border-radius: 32px;
+        transform: scale(1);
+        transform-origin: 50% 50%;
+        transition: transform 0.25s ease-out;
+      }
+
+      &:hover:before {
+        transform: scale(28);
+      }
+
+      .img-container{
+        width: 6.25rem;
+        margin-bottom: .3125rem;
+
+        img{
+          width: 100%;
+        }
+      }
+    }
+
+    .why-card:hover {
+      p {
+        transition: all 0.3s ease-out;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .title {
+        transition: all 0.3s ease-out;
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+.text {
+  .title {
+    text-align: center;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 0.875rem;
+  }
+}

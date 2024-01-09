@@ -1,0 +1,48 @@
+.blog{
+
+    .blog-card{
+        cursor: pointer;
+        transition: .5s all;
+        padding: .625rem;
+
+        .img-container{
+            height: 9.375rem;
+            margin-bottom: .625rem;
+
+            img{
+                width: 100%;
+                height: 100%;
+                border-radius: .625rem;
+            }
+        }
+
+            &:hover .title{
+                text-decoration: underline;
+            }
+
+            &:hover{
+                background-color: rgb(225, 225, 225);
+                border-radius: .625rem;
+            }
+        }
+
+        
+    }
+
+    .text{
+        text-align: justify;
+    }
+
+    .title{
+        text-align: left;
+        color: rgb(154, 0, 0);
+    }
+
+    p{
+        margin: 0;
+    }
+
+    .text span{
+        font-weight: 500;
+        text-decoration: underline;
+    }

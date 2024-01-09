@@ -1,0 +1,37 @@
+.CarDeals {
+
+    .img-container {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        overflow-x: scroll;
+        flex-wrap: wrap;
+        gap: .625rem;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        img {
+            width: 6.25rem;
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
+            transition: .3s all;
+            -webkit-transition: .3s all;
+            -moz-transition: .3s all;
+            -ms-transition: .3s all;
+            -o-transition: .3s all;
+
+            &:hover{
+                transform: translateY(-5px)
+            }
+
+            @media (max-width: 48rem) {
+                & {
+                    width: 3.75rem;
+                }
+            }
+        }
+    }
+}

@@ -1,41 +1,35 @@
+import useFetch from "../../hooks/useFetch";
+
+import "./CarDeals.scss"
+
 const CarDeals = () => {
+  const { data, loading, error } = useFetch("/carlogos?populate=*"); // Fetch from the "categories" collection
+
   return (
-    <div className="CarDeals">
-      <div className="container mt-3">
+    <div className="CarDeals my-5">
+      <div className="container pb-3 pb-md-5">
         <header>
-          <h4 className="text-end">Car Deals</h4>
+          <h4 className="text-end pb-3 px-md-5">Car Deals</h4>
         </header>
         <div className="deals">
-          <div className="item">
+          {loading} {/* Display spinner while loading */}
+          {error && <p>Error: Something went wrong</p>}{" "}
+          {/* Display error message if there's an error */}
+          {data && (
             <div className="img-container">
-              <img src="" alt="" />
+              {data.map((item) => (
+                <div key={item.id}>
+                  <img
+                    src={
+                      process.env.REACT_APP_UPLOAD_URL +
+                      item?.attributes?.image?.data?.attributes?.url
+                    }
+                    alt=""
+                  />
+                </div>
+              ))}
             </div>
-          </div>
-          <div className="item">
-            <div className="img-container">
-              <img src="" alt="" />
-            </div>
-          </div>
-          <div className="item">
-            <div className="img-container">
-              <img src="" alt="" />
-            </div>
-          </div>
-          <div className="item">
-            <div className="img-container">
-              <img src="" alt="" />
-            </div>
-          </div>
-          <div className="item">
-            <div className="img-container">
-              <img src="" alt="" />
-            </div>
-          </div>
-          <div className="item">
-            <div className="img-container">
-              <img src="" alt="" />
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

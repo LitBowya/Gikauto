@@ -1,70 +1,112 @@
 import { Link } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { removeItem, updateQuantity } from "../../redux/cartReducer";
 import { DeleteOutlined } from "@mui/icons-material";
-import './Cart.scss'
+import { loadStripe } from "@stripe/stripe-js";
+import { makeRequest } from "../../makeRequest";
+import "./Cart.scss";
 
 const Cart = () => {
+  const products = useSelector((state) => state.cart.products);
+  const dispatch = useDispatch();
 
-    const data = [
-      {
-        id: 1,
-        name: "Leanne Graham",
-        img: "../../../public/battery-removebg-preview.png",
-        price: "5454",
-        desc: "lorem ahdo adfoihfas aofhidsf  agdaskl oafiodf aso oihdosaifhdoaf oiafho fhsd oafhidfo asdofih asfiohfoiahsf oihfdsafih odsif dsfo iosfhsd89f sdsd hidsfh dsof aoisytnsdaf sdy8 safudsrf  saoyef dnhfo; as8f aas fsad8ofyes asfoystf se sdfgysa8o esfrhaso e8rtas hfsdoif asfhsdfoiasf f sdfsaoif sadfdsi8foas hsdfhosa fos"
-      },
-      {
-        id: 2,
-        name: "Ervin Howell",
-        img: "../../../public/battery-removebg-preview.png",
-        price: "787",
-        desc: "lorem ahdo adfoihfas aofhidsf  agdaskl oafiodf aso oihdosaifhdoaf oiafho fhsd oafhidfo asdofih asfiohfoiahsf oihfdsafih odsif dsfo iosfhsd89f sdsd hidsfh dsof aoisytnsdaf sdy8 safudsrf  saoyef dnhfo; as8f aas fsad8ofyes asfoystf se sdfgysa8o esfrhaso e8rtas hfsdoif asfhsdfoiasf f sdfsaoif sadfdsi8foas hsdfhosa fos"
-      },
-      {
-        id: 3,
-        name: "Clementine Bauch",
-        img: "../../../public/battery-removebg-preview.png",
-        price: "74575",
-        desc: "lorem ahdo adfoihfas aofhidsf  agdaskl oafiodf aso oihdosaifhdoaf oiafho fhsd oafhidfo asdofih asfiohfoiahsf oihfdsafih odsif dsfo iosfhsd89f sdsd hidsfh dsof aoisytnsdaf sdy8 safudsrf  saoyef dnhfo; as8f aas fsad8ofyes asfoystf se sdfgysa8o esfrhaso e8rtas hfsdoif asfhsdfoiasf f sdfsaoif sadfdsi8foas hsdfhosa fos"
-      },
-      {
-        id: 4,
-        name: "Patricia Lebsack",
-        img: "../../../public/battery-removebg-preview.png",
-        price: "1457",
-        desc: "lorem ahdo adfoihfas aofhidsf  agdaskl oafiodf aso oihdosaifhdoaf oiafho fhsd oafhidfo asdofih asfiohfoiahsf oihfdsafih odsif dsfo iosfhsd89f sdsd hidsfh dsof aoisytnsdaf sdy8 safudsrf  saoyef dnhfo; as8f aas fsad8ofyes asfoystf se sdfgysa8o esfrhaso e8rtas hfsdoif asfhsdfoiasf f sdfsaoif sadfdsi8foas hsdfhosa fos"
-      },
-    ];
+  const totalPrice = () => {
+    let total = 0;
+    products.forEach((item) => (total += item.quantity * item.price));
+    return total.toFixed(2);
+  };
+
+  const handleQuantityChange = (productId, newQuantity) => {
+    if (newQuantity < 1) {
+      newQuantity = 1; // Ensure the quantity doesn't go below 1
+    }
+
+    dispatch(updateQuantity({ productId, newQuantity }));
+  };
 
   return (
-    <div className="cart">
-      <h4>Products In Cart</h4>
-      {data?.map((item) => (
-        <div key={item.id}>
-          <Link className="link" to={`/product/${item.id}`}>
-            <div className="item">
-              <img src={item.img} alt="" />
-              <div className="details">
-                <h5>{item.name}</h5>
-                <div className="price">1 x GHC {item.price}</div>
+    <div className="cartpage">
+      <div className="container my-3">
+        <div className="row">
+          <div className="col-lg-9 my-1">
+            <div className="card border shadow-0">
+              <div className="m-4">
+                <h4 className="card-title mb-4 text-end">Your shopping cart</h4>
+                <div className="row gy-3 mb-4">
+                  {products?.map((item) => (
+                    <div key={item.id}>
+                      <div className="item row">
+                        <div className="col-4">
+                          <img
+                            src={process.env.REACT_APP_UPLOAD_URL + item.img}
+                            alt=""
+                          />
+                          <div className="details">
+                            <h5>{item.title}</h5>
+                            <div className="price">
+                              {item.quantity} x GHC {item.price}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-3">
+                          <button className="quantity">
+                            <button
+                              className="btn1"
+                              onClick={() =>
+                                handleQuantityChange(item.id, item.quantity - 1)
+                              }
+                            >
+                              -
+                            </button>
+                            {item.quantity}
+                            <button
+                              className="btn2"
+                              onClick={() =>
+                                handleQuantityChange(item.id, item.quantity + 1)
+                              }
+                            >
+                              +
+                            </button>
+                          </button>
+                        </div>
+                        <div className="deleteIcon col-3">
+                          <DeleteOutlined
+                            className="delete"
+                            onClick={() => dispatch(removeItem(item.id))}
+                          />
+                        </div>
+                        <hr />
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <DeleteOutlined className="delete" />
             </div>
-          </Link>
-          <hr />
+          </div>
+          <div className="col-lg-3 my-1">
+            <div className="card shadow-0 border">
+              <div className="card-body">
+                <h5 className="text-end">Total</h5>
+                <div className="d-flex justify-content-between">
+                  <p className="mb-2">Total price:</p>
+                  <p className="mb-2">GHC {totalPrice()}</p>
+                </div>
+                <div className="mt-3">
+                  <p className="btn btn-danger w-100 mb-2">
+                    Make Purchase
+                  </p>
+                  <Link to="/" className="btn btn-light w-100 border mt-2">
+                    Back to shop
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      ))}
-
-      <div className="total">
-        <span>SubTotal</span>
-        <span>GHC 125</span>
       </div>
-      <div className="btn">
-        <button>Proceed To Checkout</button>
-      </div>
-      <div className="reset">Reset Cart</div>
     </div>
   );
-}
+};
 
-export default Cart
+export default Cart;

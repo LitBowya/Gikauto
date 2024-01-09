@@ -1,34 +1,22 @@
+
 import Card from "../Card/Card";
 
+import useFetch from "../../hooks/useFetch";
 
-const Lists = () => {
+const Lists = ({ subCats, maxPrice, sort, catId }) => {
+  const { data, loading, error } = useFetch(
+    `/products?populate=*&[filters][categories][id]=${catId}${subCats.map(
+      (item) => `&[filters][sub_categories][id][$eq]=${item}`
+    )}&[filters][price][$lte]=${maxPrice}&sort=price:${sort}`
+  );
 
-      const data = [
-        {
-          id: 1,
-          name: "Leanne Graham",
-          img: "../../../public/battery-removebg-preview.png",
-          username: "5454",
-        },
-        {
-          id: 2,
-          name: "Ervin Howell",
-          img: "../../../public/battery-removebg-preview.png",
-          username: "787",
-        },
-        {
-          id: 3,
-          name: "Clementine Bauch",
-          img: "../../../public/battery-removebg-preview.png",
-          username: "74575",
-        },
-        {
-          id: 4,
-          name: "Patricia Lebsack",
-          img: "../../../public/battery-removebg-preview.png",
-          username: "1457",
-        },
-      ];
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: Something went wrong!{error}</div>;
+  }
 
   return (
     <div className="list">
@@ -41,6 +29,6 @@ const Lists = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Lists
+export default Lists;

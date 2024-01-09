@@ -1,25 +1,29 @@
 import { Link } from 'react-router-dom';
 
-import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import { Favorite } from '@mui/icons-material';
 import './Card.scss';
 
-const Card = ({item}) => {
+const Card = ({ item }) => {
+
   return (
     <div className="card-container">
       <Link className="link" to={`/product/${item.id}`}>
         <div className="img">
-          <img src={item.img} alt="" />
+          <img
+            src={
+              process.env.REACT_APP_UPLOAD_URL +
+              item?.attributes?.img?.data?.attributes?.url
+            }
+            alt=""
+          />
         </div>
         <div className="card-bottom">
-          <h4 className="title">{item.name}</h4>
+          <h4 className="title">{item?.attributes.title}</h4>
           <div className="prices">
-            <p className="price">GHC {item.username}</p>
+            <p className="price">GHC {item?.attributes.price}</p>
           </div>
-          <div className="cartIcon">
-            <ShoppingBagOutlinedIcon className="icon" />
-            <Favorite className="icon" />
-          </div>
+          <div className="gikautos">
+            GIK<span>autos</span>
+            </div>
         </div>
       </Link>
     </div>
