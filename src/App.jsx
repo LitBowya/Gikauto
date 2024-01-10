@@ -34,59 +34,74 @@ const App = () => {
   return (
     <div>
       {isLoading ? (
-        
         <div>{<Spinner />}</div>
       ) : (
-        <RouterProvider router={createBrowserRouter([
-          {
-            path: "/",
-            element: <Layout />,
-            children: [
-              {
-                path: "/",
-                element: <Routes>
-                  <Route index element={<Home />} />
-                </Routes>,
-              },
-              {
-                path: "/products/:id",
-                element: <Routes>
-                  <Route index element={<Products />} />
-                </Routes>,
-              },
-              {
-                path: "/product/:id",
-                element: <Routes>
-                  <Route index element={<Product />} />
-                </Routes>,
-              },
-              {
-                path: "/cart",
-                element: <Routes>
-                  <Route index element={<Cart />} />
-                </Routes>,
-              },
-              {
-                path: "/search",
-                element: <Routes>
-                  <Route index element={<Search />} />
-                </Routes>,
-              },
-              {
-                path: "/about-us",
-                element: <Routes>
-                  <Route index element={<AboutUs />} />
-                </Routes>,
-              },
-              {
-                path: "/contact",
-                element: <Routes>
-                  <Route index element={<ContactUs />} />
-                </Routes>,
-              },
-            ],
-          },
-        ])}/>
+        <RouterProvider
+          router={createBrowserRouter([
+            {
+              path: "/",
+              element: <Layout />,
+              children: [
+                {
+                  path: "/",
+                  element: (
+                    <Routes>
+                      <Route index element={<Home />} />
+                    </Routes>
+                  )
+                },
+                {
+                  path: "/products/:id",
+                  element: (
+                    <Routes>
+                      <Route index element={<Products />} />
+                    </Routes>
+                  )
+                },
+                {
+                  path: "/product/:id",
+                  element: (
+                    <Routes>
+                      <Route index element={<Product />} />
+                    </Routes>
+                  )
+                },
+                {
+                  path: "/cart",
+                  element: (
+                    <Routes>
+                      <Route index element={<Cart />} />
+                    </Routes>
+                  )
+                },
+                {
+                  path: "/search",
+                  element: (
+                    <Routes>
+                      <Route index element={<Search />} />
+                    </Routes>
+                  )
+                },
+                {
+                  path: "/about-us",
+                  element: (
+                    <Routes>
+                      <Route index element={<AboutUs />} />
+                    </Routes>
+                  )
+                },
+                {
+                  path: "/contact",
+                  element: (
+                    <Routes>
+                      <Route index element={<ContactUs />} />
+                    </Routes>
+                  )
+                }
+              ]
+            }
+          ])}
+        />
       )}
     </div>
   );

@@ -23,8 +23,8 @@ const FeaturedRandomProducts = ({ type }) => {
       {error && <div>Error: Something went wrong!</div>}
       {!loading && !error && data && (
         <div className="bottom row">
-          {getRandomItems(data, 6).map((item) => (
-            <div key={item.id} className="col-6 col-lg-4 col-xl-3">
+          {getRandomItems(data, 4).map((item) => (
+            <div key={item.id} className="col-6 col-md-4 col-xl-3">
               <Card item={item} />
             </div>
           ))}

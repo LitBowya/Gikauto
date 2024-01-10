@@ -11,7 +11,7 @@
       @media (min-width: 768px) {
         position: sticky;
         height: 100%;
-        top: .9375rem;
+        top: 0.9375rem;
       }
 
       .mainImg {
@@ -20,10 +20,14 @@
         display: flex;
         justify-content: center;
 
+        @media (max-width: 765px) {
+          height: 20rem;
+        }
+
         img {
           margin-bottom: 10px;
-          width: 100%;
-          max-width: 500px;
+          width: 500px;
+          max-width: 100%;
           height: 100%;
           cursor: pointer;
           border: 1px solid gray;
@@ -55,14 +59,21 @@
       gap: 20px;
       padding-block: 0.9375rem;
 
-      .title {
-        margin: 0;
-      }
+      .head {
+        @media (max-width: 765px) {
+          padding-inline: 10px;
+          
+          .title {
+            margin: 0;
+            font-size: 20px;
+          }
+        }
 
-      .price {
-        font-size: 24px;
-        color: rgb(139, 22, 22);
-        font-weight: 600;
+        .price {
+          font-size: 18px;
+          color: rgb(139, 22, 22);
+          font-weight: 600;
+        }
       }
 
       .desc {
@@ -134,7 +145,7 @@
     .cartmodal {
       position: sticky;
       height: 100%;
-      top: .9375rem;
+      top: 0.9375rem;
     }
 
     .more {

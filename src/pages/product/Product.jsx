@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartReducer";
 import useFetch from "../../hooks/useFetch";
 import CartModal from "../../components/Cart/CartModal";
+import Reviews from "../../components/Review/Review";
 import { AddShoppingCart } from "@mui/icons-material";
 import SimilarProduct from "../../components/SimilarProducts/SimilarProducts";
 import "./Product.scss";
@@ -105,8 +106,10 @@ const Product = () => {
                 </div>
               </div>
               <div className="col-md-7 right">
-                <h3 className="title">{data?.attributes?.title}</h3>
-                <span className="price">GHC {data?.attributes?.price}</span>
+                <div className="head">
+                  <h3 className="title">{data?.attributes?.title}</h3>
+                  <span className="price">GHC {data?.attributes?.price}</span>
+                </div>
                 <p className="desc">
                   {showFullDescription ? description : truncatedDescription}
                   {!showFullDescription && remainingDescription && (
@@ -153,7 +156,7 @@ const Product = () => {
                           title: data.attributes.title,
                           price: data.attributes.price,
                           img: data.attributes.img.data.attributes.url,
-                          quantity,
+                          quantity
                         })
                       )
                     }
@@ -192,12 +195,14 @@ const Product = () => {
                   </div>
                 </div>
                 <hr />
-
+                <div className="reviews">
+                  <Reviews productId={id} />
+                </div>
               </div>
             </div>
             <div className="similarproducts">
-                  <SimilarProduct type={data?.attributes?.type} />
-                </div>
+              <SimilarProduct type={data?.attributes?.type} />
+            </div>
           </div>
           <div className="d-none d-lg-block col-lg-3 cartmodal">
             <CartModal />

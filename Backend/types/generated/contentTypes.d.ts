@@ -887,6 +887,7 @@ export interface ApiDepartmentDepartment extends Schema.CollectionType {
   attributes: {
     Title: Attribute.String;
     image: Attribute.Media;
+    sub_title: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -969,10 +970,10 @@ export interface ApiProductProduct extends Schema.CollectionType {
     >;
     type: Attribute.Enumeration<['Lubricants', 'Battery', 'Belts', 'Filters']>;
     specs: Attribute.JSON;
-    product_reviews: Attribute.Relation<
+    reviews: Attribute.Relation<
       'api::product.product',
-      'manyToMany',
-      'api::product-review.product-review'
+      'oneToMany',
+      'api::review.review'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -992,37 +993,36 @@ export interface ApiProductProduct extends Schema.CollectionType {
   };
 }
 
-export interface ApiProductReviewProductReview extends Schema.CollectionType {
-  collectionName: 'product_reviews';
+export interface ApiReviewReview extends Schema.CollectionType {
+  collectionName: 'reviews';
   info: {
-    singularName: 'product-review';
-    pluralName: 'product-reviews';
-    displayName: 'ProductReview';
-    description: '';
+    singularName: 'review';
+    pluralName: 'reviews';
+    displayName: 'Review';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    customerName: Attribute.String;
-    rating: Attribute.Integer;
-    comment: Attribute.Text;
-    products: Attribute.Relation<
-      'api::product-review.product-review',
-      'manyToMany',
+    CustomerName: Attribute.String;
+    Rating: Attribute.Integer;
+    Comment: Attribute.Text;
+    product: Attribute.Relation<
+      'api::review.review',
+      'manyToOne',
       'api::product.product'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::product-review.product-review',
+      'api::review.review',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::product-review.product-review',
+      'api::review.review',
       'oneToOne',
       'admin::user'
     > &
@@ -1036,6 +1036,7 @@ export interface ApiSliderSlider extends Schema.CollectionType {
     singularName: 'slider';
     pluralName: 'sliders';
     displayName: 'Slider';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1046,6 +1047,8 @@ export interface ApiSliderSlider extends Schema.CollectionType {
     type: Attribute.Enumeration<
       ['Header', 'Lubricant', 'Belts', 'Battery', 'Filters']
     >;
+    small_text: Attribute.Text;
+    large_text: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1162,7 +1165,7 @@ declare module '@strapi/types' {
       'api::department.department': ApiDepartmentDepartment;
       'api::order.order': ApiOrderOrder;
       'api::product.product': ApiProductProduct;
-      'api::product-review.product-review': ApiProductReviewProductReview;
+      'api::review.review': ApiReviewReview;
       'api::slider.slider': ApiSliderSlider;
       'api::sub-category.sub-category': ApiSubCategorySubCategory;
       'api::why-us.why-us': ApiWhyUsWhyUs;

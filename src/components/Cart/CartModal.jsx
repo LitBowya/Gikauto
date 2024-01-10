@@ -7,7 +7,6 @@ import "./CartModal.scss";
 
 const CartModal = () => {
   const products = useSelector((state) => state.cart.products);
-
   const dispatch = useDispatch();
 
   const totalPrice = () => {
@@ -25,7 +24,7 @@ const CartModal = () => {
             <div className="item">
               <img src={process.env.REACT_APP_UPLOAD_URL + item.img} alt="" />
               <div className="details">
-                <h5>{item.title}</h5>
+                <h6>{item.title}</h6>
                 <div className="price">
                   {item.quantity} x GHC {item.price}
                 </div>
@@ -44,12 +43,14 @@ const CartModal = () => {
         <span>SubTotal</span>
         <span>GHC {totalPrice()}</span>
       </div>
+
       <div className="btn">
-        <button className="checkout">Proceed To Checkout</button>
+        
         <Link className="link" to="/cart">
           <button className="cartpage">Proceed To Cart</button>
         </Link>
       </div>
+
       <div className="reset" onClick={() => dispatch(resetCart())}>
         Reset Cart
       </div>

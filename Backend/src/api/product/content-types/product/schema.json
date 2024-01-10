@@ -93,11 +93,11 @@
     "specs": {
       "type": "json"
     },
-    "product_reviews": {
+    "reviews": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::product-review.product-review",
-      "mappedBy": "products"
+      "relation": "oneToMany",
+      "target": "api::review.review",
+      "mappedBy": "product"
     }
   }
 }

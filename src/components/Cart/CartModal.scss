@@ -22,7 +22,6 @@
 
   .item {
     display: flex;
-    flex-direction: row-reverse;
     align-items: center;
     justify-content: space-between;
     gap: 1.25rem;
@@ -41,19 +40,19 @@
     }
 
     img {
-      width: 5rem;
-      height: 6.25rem;
+      width: 4rem;
+      height: 4rem;
     }
 
     .details {
-      h5 {
-        font-size: 1rem;
+      h6 {
+        font-size: .85rem;
         font-weight: 500;
       }
 
       p {
         margin-bottom: 0.625rem;
-        font-size: 0.875rem;
+        font-size: 0.775rem;
       }
 
       .price {

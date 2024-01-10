@@ -1,37 +1,81 @@
-.categories{
+.categories-container {
+  position: relative;
+  background-color: #eee;
+  padding: 2.187rem 0.9375rem;
 
-
-  .category-item{
+  .categories {
+    position: relative;
     display: flex;
-    justify-content: start;
-    align-items: end;
-    overflow-x: scroll;
-    gap: 3.125rem;
-
-    &::-webkit-scrollbar{
-      display: none;
+    align-items: center;
+    justify-content: space-evenly;
+    
+    @media (max-width:550px) {
+      flex-wrap: wrap;
     }
 
-    .link{
-      width: 12.5rem;
+    .link {
+      position: relative;
+      background-color: white;
+      border-radius: 5px;
+      width: 350px;
+      height: 8.75rem;
+      margin: 0.3125rem;
+      padding: .625rem;
+      transition: .5s all;
+
+      &:hover{
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.486);
+        transform: translateY(-0.3125rem);
+        border-radius: 15px;
+      }
 
       &:hover img{
-        transform: translateY(-0.3125rem) scale(1.1);
+        transform: scale(0.85);
       }
 
-      &:hover p{
-        color: red;
+      &:hover .text-container{
+        transform: scale(1.15) translateX(5px);
+        color: rgb(109, 0, 0);
+        letter-spacing: 2px;
       }
 
-      img{
-        width: 100%;
-        transition: .5s all;
+      @media (max-width: 768px) {
+        width: 250px;
+        height: 5.75rem;
       }
 
-      p{
-        text-align: center;
-        font-weight: 600;
-        transition: .5s all;
+      .category {
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        align-items: center;
+        position: relative;
+
+        .img-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          img {
+            width: 100%;
+            transition: .5s all;
+            
+          }
+        }
+
+        .text-container {
+          transition: .5s all;
+
+          .title{
+              margin-bottom: -10px;
+              font-weight: 600;
+              font-size: 1.25rem;
+            }
+
+            .sub_title{
+              margin: 0;
+            }
+        }
       }
     }
   }

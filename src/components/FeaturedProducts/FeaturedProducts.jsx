@@ -8,9 +8,11 @@ const FeaturedProducts = ({ type }) => {
   );
 
   return (
-    <div className="featuredProducts container">
-      <div className="top mb-3 mt-5">
-      </div>
+    <div className="featuredProducts container my-3">
+      <header className="product-title">
+        <h4 className="text-end">{type}</h4>
+      </header>
+      <div className="top mb-3 mt-5"></div>
       {loading}
       {error && <div>Error: Something went wrong!</div>}
       {!loading && !error && (

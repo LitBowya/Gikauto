@@ -1,36 +1,36 @@
-import Spinner from "../Spinner/Spinner.jsx";
+import React from "react";
 import useFetch from "../../hooks/useFetch";
 import "./Slider.scss";
 
-const Slider = ({ type }) => {
-  const { data, loading, error } = useFetch(
-    `/sliders?populate=*&[filters][type][$eq]=${type}`
-  );
+const Slider = () => {
+  const { data, loading, error } = useFetch(`/sliders?populate=*&`);
+
+  console.log(data);
 
   return (
-    <div className={`slider ${type}`}>
-      <div className="container">
-        {loading} {/* Display Spinner during loading */}
+    <div className="slider">
+      <div className="slider-container">
+        {loading && <p>Loading...</p>}
         {error && <p>Error: {error.message}</p>}
-        {data?.length > 0 && (
-          <div className="hero-section">
-            <div className="img-container">
-              <img
-                src={
+        {data &&
+          data.map((item) => (
+            <div
+              key={item?.id}
+              className="hero-section"
+              style={{
+                backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${
                   process.env.REACT_APP_UPLOAD_URL +
-                  data[0].attributes?.image?.data?.attributes?.url
-                }
-                alt="Slider Image"
-                onError={(e) => {
-                  e.target.style.display = "none"; // Hide the image on error
-                }}
-              />
+                  item?.attributes?.image?.data?.attributes?.url
+                })`
+              }}
+            >
+              <div className="hero-text">
+                <p className="text">{item?.attributes?.text}</p>
+                <p className="large-text">{item?.attributes?.large_text}</p>
+                <p className="small-text">{item?.attributes?.small_text}</p>
+              </div>
             </div>
-            <div className="text-container">
-              <p className="px-md-5">{data[0].attributes?.text}</p>
-            </div>
-          </div>
-        )}
+          ))}
       </div>
     </div>
   );

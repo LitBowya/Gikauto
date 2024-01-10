@@ -4,7 +4,8 @@
   "info": {
     "singularName": "slider",
     "pluralName": "sliders",
-    "displayName": "Slider"
+    "displayName": "Slider",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,14 +16,15 @@
       "type": "string"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "type": {
       "type": "enumeration",
@@ -33,6 +35,12 @@
         "Battery",
         "Filters"
       ]
+    },
+    "small_text": {
+      "type": "text"
+    },
+    "large_text": {
+      "type": "text"
     }
   }
 }

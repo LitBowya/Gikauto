@@ -93,9 +93,6 @@ const Cart = () => {
                   <p className="mb-2">GHC {totalPrice()}</p>
                 </div>
                 <div className="mt-3">
-                  <p className="btn btn-danger w-100 mb-2">
-                    Make Purchase
-                  </p>
                   <Link to="/" className="btn btn-light w-100 border mt-2">
                     Back to shop
                   </Link>
