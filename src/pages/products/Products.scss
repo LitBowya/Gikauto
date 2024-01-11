@@ -6,6 +6,30 @@
   }
 }
 
+@media (max-width: 992px) {
+  .collapse {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgb(209, 209, 209);
+    height: 100%;
+  }
+
+  .tuneicon {
+    color: rgb(165, 0, 0);
+  }
+}
+
+@media (min-width: 993px) {
+  .collapse {
+    border: 1px solid rgb(110, 0, 0);
+    border-radius: .3125rem;
+  }
+
+}
+
+
+
 .accordion {
   padding: 0.9375rem 1.25rem;
   transition: 0.5s all;
@@ -23,7 +47,7 @@
     }
 
     .inputItem {
-      margin-bottom: 0.9375rem;
+      margin-bottom: 0.2rem;
 
       label {
         margin-inline: 0.625rem;
@@ -122,7 +146,7 @@
     border-radius: 4px;
   }
 
-    .carousel-control-prev-icon {
+  .carousel-control-prev-icon {
     background-color: white;
     opacity: 1;
     color: black;
@@ -148,7 +172,6 @@
   }
 
   @media (max-width: 47.8125rem) {
-
     .title {
       text-transform: capitalize;
       font-weight: 900;

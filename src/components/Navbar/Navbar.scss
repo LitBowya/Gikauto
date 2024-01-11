@@ -1,4 +1,8 @@
-.navbar {
+.topbar{
+
+  transition: transform 0.3s ease;
+
+  .navbar {
   height: 80px;
   width: 100vw;
   background-color: #d6d6d6;
@@ -56,4 +60,5 @@
       }
     }
   }
+}
 }

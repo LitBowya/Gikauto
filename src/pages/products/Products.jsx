@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect, useRef } from "react";
 import Spinner from "../../components/Spinner/Spinner";
 import Lists from "../../components/Lists/Lists";
 import useFetch from "../../hooks/useFetch";
+import TuneIcon from "@mui/icons-material/Tune";
 import "./Products.scss";
 
 const Products = () => {
@@ -34,23 +35,44 @@ const Products = () => {
     );
   };
 
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setActivePanel(null);
+      }
+    };
+
+    // Add event listener when the component mounts
+    window.addEventListener("click", handleClickOutside);
+
+    // Remove event listener when the component unmounts
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, []); 
+
   return (
     <div className="products">
       <div className="container mt-4">
         <div className="row">
-          <div className="col-lg-3">
-            <button
-              className="btn btn-outline-secondary mb-3 w-100 d-lg-none"
+          <div className="col-lg-3" ref={dropdownRef}>
+            <div
+              className="filter d-lg-none text-end"
               type="button"
               onClick={() => togglePanel("navbarSupportedContent")}
               aria-expanded={activePanel === "navbarSupportedContent"}
               aria-controls="navbarSupportedContent"
             >
-              <span>Show filter</span>
-            </button>
+              <span className="tuneicon">
+                Filter
+                <TuneIcon className="mb-2" />
+              </span>
+            </div>
 
             <div
-              className={`collapse card d-lg-block mb-3${
+              className={`collapse d-lg-block mb-3${
                 activePanel === "navbarSupportedContent" ? " show" : ""
               }`}
               id="navbarSupportedContent"

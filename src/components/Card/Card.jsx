@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ShoppingCart } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartReducer";
+import { toast } from "react-toastify";
 
 import "./Card.scss";
 
@@ -9,7 +10,8 @@ const Card = ({ item }) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = (e) => {
-    e.preventDefault(); // Prevents the Link from navigating
+
+    e.preventDefault();
 
     dispatch(
       addToCart({
@@ -20,6 +22,9 @@ const Card = ({ item }) => {
         quantity: 1
       })
     );
+
+    // Display toast message
+    toast.success("Added to cart successfully");
   };
 
   return (
@@ -35,15 +40,19 @@ const Card = ({ item }) => {
           />
         </div>
         <div className="card-bottom">
-          <h4 className="title">{item?.attributes.title}</h4>
-          <div className="prices">
-            <p className="price">GHC {item?.attributes.price}</p>
+          <div>
+            <h4 className="title">{item?.attributes.title}</h4>
+            <div className="prices">
+              <p className="price">GHC {item?.attributes.price}</p>
+            </div>
           </div>
-          <div className="add" onClick={handleAddToCart}>
-            <ShoppingCart />
-          </div>
-          <div className="gikautos">
-            GIK<span>autos</span>
+          <div>
+            <div className="add" onClick={handleAddToCart}>
+              <ShoppingCart className="icon" />
+            </div>
+            <div className="gikautos">
+              GIK<span>autos</span>
+            </div>
           </div>
         </div>
       </Link>

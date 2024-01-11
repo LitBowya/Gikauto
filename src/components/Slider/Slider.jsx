@@ -5,8 +5,6 @@ import "./Slider.scss";
 const Slider = () => {
   const { data, loading, error } = useFetch(`/sliders?populate=*&`);
 
-  console.log(data);
-
   return (
     <div className="slider">
       <div className="slider-container">

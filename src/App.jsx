@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Outlet,
   createBrowserRouter,
@@ -6,6 +6,8 @@ import {
   Routes, // Import Routes from react-router-dom
   Route
 } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/home/Home";
 import Product from "./pages/product/Product";
 import Products from "./pages/products/Products";
@@ -111,8 +113,9 @@ const Layout = () => {
   return (
     <div className="app">
       <Navbar />
-      <Outlet />
+      <Outlet className="app-outlet"/>
       <Footer />
+      <ToastContainer position="bottom-right" autoClose={3000} />
     </div>
   );
 }

@@ -7,15 +7,15 @@ const Categories = () => {
 
   return (
     <div className="categories-container">
-      <div className="category-item">
+      <div className="category-item container">
         <div className="categories">
           {loading}
           {error && <p>Error: Something went wrong</p>}
           {data &&
             data?.map((item) => (
               <Link key={item.id} className="link" to={`/products/${item.id}`}>
-                <div className="category row">
-                  <div className="img-container col-5">
+                <div className="category">
+                  <div className="img-container">
                     <img
                       src={
                         process.env.REACT_APP_UPLOAD_URL +
@@ -25,7 +25,7 @@ const Categories = () => {
                     />
                   </div>
 
-                  <div className="text-container col-7">
+                  <div className="text-container">
                     <p className="title">{item.attributes.Title}</p>
                     <p className="sub_title">{item.attributes.sub_title}</p>
                   </div>

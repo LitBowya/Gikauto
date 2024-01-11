@@ -33,7 +33,6 @@ const Reviews = ({ productId }) => {
         }
       })
       .then((response) => {
-        console.log("Review submitted successfully:", response.data);
 
         // Fetch updated reviews after submitting
         fetchData(`/reviews?populate=*&product.id_eq=${productId}`);
@@ -54,10 +53,10 @@ const Reviews = ({ productId }) => {
       {error && <p>Error fetching reviews: {error.message}</p>}
       <div className="review-items">
         {visibleReviews.length > 0 ? (
-          visibleReviews.map(
-            (review) =>
-              review.attributes.product.data.id == productId && (
-                <div key={review?.attributes?.id} className="review-item">
+          visibleReviews.map((review) => (
+            <div key={review?.attributes?.id} className="review-item">
+              {review?.attributes?.product?.data?.id == productId && (
+                <>
                   <div>{review?.attributes?.CustomerName}</div>
                   <div>{review?.attributes?.Comment}</div>
                   <Rating
@@ -77,9 +76,10 @@ const Reviews = ({ productId }) => {
                       {moment(review?.attributes?.createdAt).format("hh:mm A")}
                     </p>
                   </div>
-                </div>
-              )
-          )
+                </>
+              )}
+            </div>
+          ))
         ) : (
           <p>No reviews available</p>
         )}
@@ -105,9 +105,7 @@ const Reviews = ({ productId }) => {
           <input
             type="text"
             value={customerName}
-            onChange={(e) => {
-              setCustomerName(e.target.value);
-            }}
+            onChange={(e) => setCustomerName(e.target.value)}
             placeholder="Your Name"
           />
         </div>
@@ -115,9 +113,7 @@ const Reviews = ({ productId }) => {
         <div className="input-group">
           <textarea
             value={newReview}
-            onChange={(e) => {
-              setNewReview(e.target.value);
-            }}
+            onChange={(e) => setNewReview(e.target.value)}
             placeholder="Write a review..."
           />
         </div>
@@ -125,9 +121,7 @@ const Reviews = ({ productId }) => {
         <div className="input-group">
           <Rating
             initialRating={rating}
-            onChange={(value) => {
-              setRating(value);
-            }}
+            onChange={(value) => setRating(value)}
             emptySymbol="far fa-star"
             fullSymbol="fas fa-star"
             className="stars"

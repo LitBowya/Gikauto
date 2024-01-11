@@ -6,7 +6,7 @@ const CarDeals = () => {
   const { data, loading, error } = useFetch("/carlogos?populate=*"); // Fetch from the "categories" collection
 
   return (
-    <div className="CarDeals my-5">
+    <div className="CarDeals my-2 my-md-5">
       <div className="container pb-3 pb-md-5">
         <header>
           <h4 className="text-end pb-3 px-md-5">Car Deals</h4>

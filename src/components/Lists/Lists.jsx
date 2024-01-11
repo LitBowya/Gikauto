@@ -22,7 +22,7 @@ const Lists = ({ subCats, maxPrice, sort, catId }) => {
     <div className="list">
       <div className="row">
         {data?.map((item) => (
-          <div className="col-6 col-md-3" key={item.id}>
+          <div className="col-6 col-md-4" key={item.id}>
             <Card item={item} />
           </div>
         ))}

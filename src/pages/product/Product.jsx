@@ -72,7 +72,7 @@ const Product = () => {
         <div className="row">
           <div className="col-lg-9 border rounded-3">
             <div className="row">
-              <div className="col-md-5 left">
+              <div className="col-md-6 col-lg-5 left">
                 <div className="mainImg">
                   <img
                     src={
@@ -100,12 +100,11 @@ const Product = () => {
                         }
                         alt=""
                         onClick={(e) => setSelectedImg(imageKey)}
-                        className="border"
                       />
                     ))}
                 </div>
               </div>
-              <div className="col-md-7 right">
+              <div className="col-md-6 col-lg-7 right">
                 <div className="head">
                   <h3 className="title">{data?.attributes?.title}</h3>
                   <span className="price">GHC {data?.attributes?.price}</span>

@@ -1,80 +1,66 @@
 .categories-container {
-  position: relative;
-  background-color: #eee;
-  padding: 2.187rem 0.9375rem;
+  background: #eee;
+  border: 15px solid #eee;
 
-  .categories {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    
-    @media (max-width:550px) {
-      flex-wrap: wrap;
-    }
+  .category-item {
+    background: white;
+    padding-block: 25px;
+    border-radius: 5px;
 
-    .link {
-      position: relative;
-      background-color: white;
-      border-radius: 5px;
-      width: 350px;
-      height: 8.75rem;
-      margin: 0.3125rem;
-      padding: .625rem;
-      transition: .5s all;
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
 
-      &:hover{
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.486);
-        transform: translateY(-0.3125rem);
-        border-radius: 15px;
-      }
-
-      &:hover img{
-        transform: scale(0.85);
-      }
-
-      &:hover .text-container{
-        transform: scale(1.15) translateX(5px);
-        color: rgb(109, 0, 0);
-        letter-spacing: 2px;
-      }
-
-      @media (max-width: 768px) {
-        width: 250px;
-        height: 5.75rem;
+      @media (max-width: 34.375rem) {
+        flex-wrap: wrap;
       }
 
       .category {
         display: flex;
-        justify-content: center;
-        height: 100%;
         align-items: center;
-        position: relative;
+        gap: 15px;
+        padding-inline: 0.625rem;
+        transition: 0.5s all;
+        padding: 10px;
+        border-radius: 5px;
 
-        .img-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
+        &:hover {
+          background-color: #e2e2e2;
+          transform: scale(1.1);
+        }
 
-          img {
-            width: 100%;
-            transition: .5s all;
-            
+        &:hover .title{
+          font-weight: 700;
+        }
+
+        &:hover img{
+          transform: scale(0.75);
+        }
+
+        @media (max-width: 750px) {
+          flex-direction: column;
+        }
+
+        img {
+          width: 3.75rem;
+          max-width: 100%;
+          transition: .5s all;
+
+          @media (max-width: 34.375rem) {
+            width: 3.125rem;
           }
         }
 
         .text-container {
-          transition: .5s all;
+          .title {
+            margin-bottom: -10px;
+            transition: 0.25s all;
+          }
 
-          .title{
-              margin-bottom: -10px;
-              font-weight: 600;
-              font-size: 1.25rem;
-            }
-
-            .sub_title{
-              margin: 0;
-            }
+          .sub_title {
+            margin: 0;
+          }
         }
       }
     }

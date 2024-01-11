@@ -7,6 +7,7 @@ import "./CartModal.scss";
 
 const CartModal = () => {
   const products = useSelector((state) => state.cart.products);
+
   const dispatch = useDispatch();
 
   const totalPrice = () => {
@@ -43,14 +44,12 @@ const CartModal = () => {
         <span>SubTotal</span>
         <span>GHC {totalPrice()}</span>
       </div>
-
       <div className="btn">
-        
+        {/* <button className="checkout">Proceed To Checkout</button> */}
         <Link className="link" to="/cart">
           <button className="cartpage">Proceed To Cart</button>
         </Link>
       </div>
-
       <div className="reset" onClick={() => dispatch(resetCart())}>
         Reset Cart
       </div>

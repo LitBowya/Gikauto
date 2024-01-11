@@ -12,3 +12,7 @@
 html{
   overflow-x: hidden;
 }
+
+.app-outlet{
+  min-height: auto;
+}

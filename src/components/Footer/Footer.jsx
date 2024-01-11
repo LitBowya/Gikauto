@@ -1,3 +1,4 @@
+// Footer.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -7,17 +8,19 @@ import "./Footer.scss";
 
 const Footer = () => {
   return (
-    <div className="footer">
-      <div className="top">
-        <WhatsAppIcon />
-        <CallIcon />
-        <LocationOnIcon />
-      </div>
-      <hr className="line" />
-      <div className="down">
-        <Link className="link" to="/">
-          GIK<span>autos</span>
-        </Link>
+    <div className="footer-container down-fixed">
+      <div className="footer">
+        <div className="top">
+          <WhatsAppIcon />
+          <CallIcon />
+          <LocationOnIcon />
+        </div>
+        <hr className="line" />
+        <div className="down">
+          <Link className="link" to="/">
+            GIK<span>autos</span>
+          </Link>
+        </div>
       </div>
     </div>
   );
